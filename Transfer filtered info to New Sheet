@@ -2,15 +2,24 @@
 
 Sub Criteria_Region_NewSheet()
 
-Dim x As Long
+Dim mysheet As Variant
+
+Dim mycriteria As Variant
 
 Dim myValue As Variant
 
-Dim mysheet As Variant
+Dim x As Long
+
+Dim y As Long
+
 
 Application.ScreenUpdating = False
 
+
 mysheet = ActiveSheet.Name
+
+
+mycriteria = InputBox("Choose Criteria")
 
 On Error Resume Next
 
@@ -20,14 +29,13 @@ On Error Resume Next
 
 'Region is the criteria
   
-  x = Application.WorksheetFunction.Match("Region", Range(Cells(y, 1), Cells(y, 1000)), 0)
-
+    x = Application.WorksheetFunction.Match(mycriteria, Range(Cells(y, 1), Cells(y, 1000)), 0)
 
 On Error GoTo 0
 
 'Input any value number, string, or date
 
-myValue = InputBox("Filter by Region")
+myValue = InputBox("Filter by " & mycriteria & "")
 
 'Filter
 
@@ -53,7 +61,11 @@ Range("A1:AS100").EntireRow.AutoFit
 
 Worksheets(mysheet).ShowAllData
 
-
 Application.ScreenUpdating = True
+
+Exit Sub
+
+On Error GoTo ErrHandler:
+MsgBox "Criteria or Filter not Found "
 
 End Sub
