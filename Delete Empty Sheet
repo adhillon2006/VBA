@@ -1,0 +1,18 @@
+#VBA
+Sub Delete_Empty_Sheets()
+Dim ws As Worksheet
+
+'Disables alert; will delete everything without asking
+Application.DisplayAlerts = False
+
+' Refers to all the worksheets
+For Each ws In ActiveWorkbook.Worksheets
+
+' If cell A1 is blank it will delete or use (ws.Cells) to check the whole sheet
+If Application.CountA(ws.Cells(1, 1)) = 0 Then ws.Delete
+
+Next ws
+
+Application.DisplayAlerts = True
+
+End Sub
