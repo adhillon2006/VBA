@@ -1,6 +1,5 @@
 Sub Criteria_MultiSheet_Split()
 
-Option Explicit
 
 Dim duplicatex As Long
 Dim lastrow As Long
