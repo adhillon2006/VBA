@@ -1,0 +1,15 @@
+Sub pivot_filter
+
+Dim i As Long
+
+With ActiveSheet.PivotTables(1).PivotFields("Last Activity")
+        For i = 1 To .PivotItems.Count
+            If InStr(1, .PivotItems(i), "Initiate Hire") <> 0 Or InStr(1, .PivotItems(i), "Initiate Offer") <> 0 Then
+                .PivotItems(i).Visible = True
+            Else
+                .PivotItems(i).Visible = False
+            End If
+        Next i
+End With
+
+Sub End 
