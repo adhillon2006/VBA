@@ -1,0 +1,6 @@
+Sub Savefile
+' Save file in directory with current date format
+ActiveWorkbook.SaveAs Filename:="C:\Users\Name\Documents\NewFolder/File Name " & Format (Now(), "MMM--DD--YYYY"), FileFormat:=52
+' Format month MMM = Aug vs MM = 8 
+' Format the "-" to "." for the day will only show the month and day, not year
+End Sub
