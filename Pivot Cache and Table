@@ -1,0 +1,37 @@
+Option Explicit
+
+Sub Create_Pivot_Table_AND_Cache
+'define variables
+  Dim pc As PivotCache
+  Dim pvt As PivotTable
+  Dim pvf As PivotField
+  
+'create pivot cache
+  Set pc = ThisWorkbook.PivotCaches.Create( _
+      SourceType:=xlDatabase, _
+      SourceData:=wsSheet1.Name & ! & wsSheet1.Range("A1").CurrentRegion.Address, _
+      Version:=xlPivotTableVerison15)
+ 
+ 'create pivot table set up   
+   Worksheets.Add
+   Range("A3").Select
+  
+  Set pt = pc.CreatePivotTable( _
+      TableDestination:=ActiveCell, _
+      TableName:="PivotTable1")
+
+' column is generic for the column name
+' array field is necessary for using multiple fields 
+  pt.Addfields _
+  Rowfields:="column1", _
+  Columnfields: = Array("column2",column3), _
+  Pagefields:="country")
+' column count
+  pt.AddDatafield pt.Pivotfields("count"),,xlcount
+
+  
+ 'See how many pivot caches, memory used, record count and versions in workbook
+  Debug.Print ThisWorkbook.PivotCaches.Count
+  Debug.Print pc.MemoryUsed, pc.RecordCount, pc.Version
+  
+End Sub
