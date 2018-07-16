@@ -1,0 +1,23 @@
+Sub Union()
+Dim lstrow1 As Long
+Dim lstrow2 As Long
+Dim lstcol As Long
+
+Application.ScreenUpdating = False
+
+'Find firstlast row for Sheet Prospect
+lstrow1 = Sheets("Prospects").Cells(Rows.Count, 1).End(xlUp).Row
+
+'Find first last column for Sheet Prospects
+lstcol = Sheets("Prospects").Cells(1, Columns.Count).End(xlToLeft).Column
+
+'Find second last row for Sheet Job Application
+lstrow2 = Sheets("Job Application").Cells(Rows.Count, 1).End(xlUp).Row
+
+'Copy Paste to destination
+ActiveSheet.Range("a2", ActiveSheet.Cells(lstrow1, lstcol)).Copy _
+    Destination:=Worksheets("Job Application").Range("A" & lstrow2 + 1)
+
+Application.ScreenUpdating = True
+
+End Sub
