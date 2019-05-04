@@ -17,8 +17,9 @@ With OutlookMail
     .CC = ""
     .BCC = ""
     .Subject = "Insert subject"
-    .Body = "Write email"
-    .Attachments.Add Application.ActiveWorkbook.FullName
+    .HTMLBody = "<body><p>You can find the required information at " & _
+                              "<a href='http://infotest.com/12345/12345.html'>" & _
+                              "http://infotest.com/12345/12345.html</a>. Good luck!"
     .Send
 
 End With
